@@ -1,0 +1,66 @@
+.block {
+	display: inline-block;
+	min-height: 60px;
+	vertical-align: top;
+}
+
+.date {
+	text-align: center;
+	margin-top: 2%;
+	display: block;
+}
+
+form {
+	display: inline-block;
+}
+
+.generator {
+	margin-bottom: 2%;
+}
+
+#generator-btn {
+	width: 120px;
+}
+
+#generator {
+	margin-top: 0;
+}
+
+#table {
+	margin-top: 4%;
+}
+
+#day, #unknown {
+	font-size: 20px;
+	margin-bottom: 0;
+	padding-top: 3%;
+}
+
+.table {
+	margin:auto;
+	width: 40%;
+	text-align: left;
+}
+
+#price, #unknown {
+	font-size: 15px;
+	margin-bottom: 20px;
+}
+
+img {
+	display: inline-block;
+	width: 35%;
+	margin: 6%;
+	margin-top: 2.5%;
+	margin-bottom: 4%;
+	margin-right: 8%;
+}
+
+td {
+	font-weight: 400;
+}
+
+#summary {
+	margin-top: 3%;
+	width: 130px;
+}

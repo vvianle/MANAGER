@@ -1,0 +1,47 @@
+<link href="css/stylesheets/lunch_day.css" rel="stylesheet">
+<div class='body'>
+	<div ng-if='login' data-ng-init='init()'>
+		<h1 class='page-label'>Daily Lunch Request</h1>
+		<div class='date'>
+			<form name='dayForm'>
+			<div class='block'><label>Date:</label>
+			<input type='date' name='date' ng-model='day.date' required></br>
+			<span class='error' ng-show="dayForm.date.$error.required && dayForm.date.$touched">This field is required.</span>
+			<span class='error' ng-show="dayForm.date.$invalid && dayForm.date.$touched && !dayForm.date.$error.required">Wrong date format.</span></div>
+			<button class='btn-primary btn' ng-click='dayForm.$valid && check()'>Check</button></form>
+			<button class='btn-primary btn' ng-click='getCurrent()'>Current</button></br>
+			[[date.getFullYear()]]
+		</div>
+		
+			
+		<div class='date'>
+			<img class='pull-right' src='img/folk.png'/>
+			<div ng-show='show'>
+				<p id='day'>[[orders.date]]</p>
+				<p id='price'>Mealprice: [[orders.price]]VND</p>
+				<table class='table table-hover table-striped' ng-show='orders.users.length > 0'>
+					<thead>
+						<tr>
+							<th>TT</th>
+							<th>Name</th>
+							<th>Email</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat='user in orders.users track by $index'>
+							<td>[[$index+1]]</td>
+							<td>[[user.username]]</td>
+							<td>[[user.email]]</td>
+						</tr>
+					</tbody>
+				</table>
+				<button class='btn btn-primary' id='summary' ng-click='monthView()'>Month Summary</button>
+			</div>
+		</div>
+		<div ng-show='!show'>
+			<p class='msg' id='unknown'>[[msg]]</p>
+		</div>
+		</div>
+	</div>
+	<div class='msg' ng-if='!login'>You must login to view this! </div>
+</div>

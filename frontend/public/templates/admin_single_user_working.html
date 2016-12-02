@@ -1,0 +1,61 @@
+<link href="css/stylesheets/single_user_lunch.css" rel="stylesheet">
+<link href="css/stylesheets/single_user_working.css" rel="stylesheet">
+<div ng-controller='AdminSingleUserWorkingCtrl' class='body'>
+	<div ng-show='admin' ng-init='init()'>
+
+		<h1 class='page-label'>Update <label id='name'>[[def.user.username]]</label> Working Request</h1>
+		<div class='block'>
+			<form>
+				<h3 class='head def'>Default:</h3>
+				<div id='check'>
+				<div class='check'><input type='checkbox' ng-model='def.sun_morning'><label>Sunday Morning</label></div>
+				<div class='check'><input type='checkbox' ng-model='def.sun_evening'><label>Sunday Evening</label></div>
+				<div class='check'><input type='checkbox' ng-model='def.mon'><label>Monday</label></div>
+				<div class='check'><input type='checkbox' ng-model='def.tue'><label>Tuesday</label></div>
+				<div class='check'><input type='checkbox' ng-model='def.wed'><label>Wednesday</label></div>
+				<div class='check'><input type='checkbox' ng-model='def.thu'><label>Thursday</label></div>
+				<div class='check'><input type='checkbox' ng-model='def.fri'><label>Friday</label></div>
+				<div class='check'><input type='checkbox' ng-model='def.sat'><label>Saturday</label></div></div>
+				<button class='btn btn-primary update' ng-click='update()'>Update</button>
+			</form>
+		</div>
+
+		<div class='block col-sm-6'>
+			<form name='addForm' class='formm'>
+				<h3 class='head day-header'>Additional Days:</h3>
+				<label class='input-label'>Date:</label>
+				<div class='input-block'><input type='date' name='date' ng-model='addD.date' required>
+					<br/><span ng-show="addForm.date.$error.required && addForm.date.$touched">This field is required.</span>
+					<span ng-show="addForm.date.$invalid && addForm.date.$touched && !addForm.date.$error.required">Wrong date format.</span>
+				</div>
+				<button class='btn btn-primary add-btn' ng-click='addForm.$valid && addDay()'>Add</button></br>
+			</form>
+			<div class='days'>
+				<div class='day' ng-repeat='day in add track by $index'>
+					<label>[[day.date]]</label>
+					<input type="image" class='delete-btn' ng-click='deleteDay(day.date, $index, 0)' src='img/trash.png'/>
+				</div>
+			</div>
+		</div>
+
+		<div class='block col-sm-6'>
+			<form name='cancelForm' class='formm'>
+				<h3 class='head day-header'>Cancel Days:</h3>
+				<label class='input-label'>Date:</label>
+				<div class='input-block'><input type='date' name='date' ng-model='cancelD.date' required>
+					</br><span ng-show="cancelForm.date.$error.required && cancelForm.date.$touched">This field is required.</span>
+					<span ng-show="cancelForm.date.$invalid && cancelForm.date.$touched && !cancelForm.date.$error.required">Wrong date format.</span>
+				</div>
+				<button class='btn btn-primary add-btn' ng-click='cancelForm.$valid && cancelDay()'>Add</button></br>
+			</form>
+			<div class='days'>
+				<div class='day' ng-repeat='day in cancel track by $index'>
+					<label>[[day.date]]</label>
+					<input type="image" class='delete-btn' ng-click='deleteDay(day.date, $index, 1)' src='img/trash.png'/>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class='msg' ng-if='!login'>You must login to view this!</div>
+	<div class='msg' ng-if='login && !admin'>You do not have permission to view this!</div>
+</div>

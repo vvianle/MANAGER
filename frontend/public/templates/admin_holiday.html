@@ -1,0 +1,73 @@
+<link href="css/stylesheets/admin_holiday.css" rel="stylesheet">
+<div class='body' ng-controller='AdminHolidayCtrl' >
+	<div ng-if='admin' data-ng-init='init()'>
+		<h1 class='page-label'>Holiday</h1>
+		<div id='radio'>
+			<div class='col-sm-4'><input type='radio' name='myHoliday' ng-model='myHoliday' value='single'>Single day holiday</div>
+			<div class='col-sm-4'><input type='radio' name='myHoliday' ng-model='myHoliday' value='range'>Holiday range</div>
+		</div>
+
+		<div id='form'>
+			<form name='singleHolidayForm' ng-show='myHoliday=="single"'>
+
+				<div class='checkb'><div class='block'><label>Date:&nbsp;&nbsp;</label>
+					<input type='date' name='date' ng-model='holiday.startDate' required>
+					</br><span class='error2' ng-show="(singleHolidayForm.date.$error.required && singleHolidayForm.date.$touched)">This field is required.&nbsp;</span>
+					<span class='error2' ng-show="singleHolidayForm.date.$invalid && singleHolidayForm.date.$touched && !singleHolidayForm.date.$error.required">Wrong date format.&nbsp;</span>
+				</div>
+				<button class='btn btn-primary' ng-click='singleHolidayForm.$valid && singleCreate()'>Create</button></div>
+				<div class='checkb'><input type='checkbox' name='noLunch' ng-model='holiday.noLunch' ng-init='holiday.noLunch=false'><label class='name-label'>No lunch</label>
+				<input type='checkbox' name='noWorking' ng-model='holiday.noWorking' ng-init='holiday.noWorking=false'><label class='name-label'>No schedule</label></br>
+				<span ng-show='!(holiday.noLunch || holiday.noWorking) && clicked'>At least one checkbox must be checked.</span></div>
+			</form>
+		
+			<form name='rangeHolidayForm' ng-show='myHoliday=="range"'>
+				<div class='checkb'><div class='block'><label class='date-label'>Start date:</label>
+						<input class='input-block' type='date' name='startDate' ng-model='holiday.startDate' required>
+						</br><span class='error3' ng-show="(rangeHolidayForm.startDate.$error.required && rangeHolidayForm.startDate.$touched)">This field is required.&nbsp;</span>
+						<span class='error3' ng-show="(rangeHolidayForm.startDate.$invalid && rangeHolidayForm.startDate.$touched && !rangeHolidayForm.startDate.$error.required)">Wrong date format.&nbsp;</span>
+					</div>
+					<div class='block'><label class='date-label'>End date:</label>
+						<input class='input-block' type='date' name='endDate' ng-model='holiday.endDate' min='holiday.endDate' required>
+						</br><span class='error3' ng-show="(rangeHolidayForm.endDate.$error.required && rangeHolidayForm.endDate.$touched)">This field is required.&nbsp;</span>
+						<span class='error3' ng-show="(rangeHolidayForm.endDate.$invalid && rangeHolidayForm.endDate.$touched && !rangeHolidayForm.endDate.$error.required)">Wrong date format.&nbsp;</span>
+					</div>
+					<button class='btn btn-primary' ng-click='rangeHolidayForm.$valid && rangeCreate()'>Create</button>
+				</div>
+				<div class='checkb'><input type='checkbox' name='noLunch' ng-model='holiday.noLunch' ng-init='holiday.noLunch=false'><label class='name-label'>No lunch</label>
+					<input type='checkbox' name='noWorking' ng-model='holiday.noWorking' ng-init='holiday.noWorking=false'><label class='name-label'>No schedule</label></br>
+					<span ng-show='!(holiday.noLunch || holiday.noWorking) && clicked'>At least one checkbox must be checked.</span>
+				</div>
+			</form>
+		</div>		
+
+		<div ng-show='holidays.length>0'>
+			<h3 class='head'>Holiday List:</h3>
+			<table class='table-striped'>
+				<thead>
+					<tr>
+						<th>TT</th>
+						<th>Start date</th>
+						<th>End date</th>
+						<th>xL</th>
+						<th>xS</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat='holiday in holidays track by $index'>
+						<td>[[$index+1]]</td>
+						<td>[[holiday.startDate.toString()]]</td>
+						<td><span ng-show='holiday.startDate != holiday.endDate'>[[holiday.endDate.toString()]]</span></td>
+						<td><img class='check' src='img/circle.png' ng-show='holiday.noLunch'></td>
+						<td><img class='check' src='img/circle.png' ng-show='holiday.noWorking'></td>
+						<td><input type="image" class='delete-btn' ng-click='delete(holiday.id, $index)' src='img/trash.png'/>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	<p class='msg' id='msg' ng-show='holidays.length==0'>There is no available holiday.</p>
+	</div>
+	<div class='msg' ng-if='!login'>You must login to view this!</div>
+	<div class='msg' ng-if='login && !admin'>You do not have permission to view this!</div>
+</div>

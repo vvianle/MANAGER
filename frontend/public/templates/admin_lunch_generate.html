@@ -1,0 +1,40 @@
+<link href="css/stylesheets/lunch_day.css" rel="stylesheet">
+<div class='body'>
+	<div ng-if='admin' data-ng-init='init()'>
+		<h1 class='page-label generator'>Daily Lunch Request</h1>
+		[[err]]
+		<div class='date' id='generator'>
+			<button class='btn-primary btn generator' id='generator-btn' ng-click='generate()'>Generate</button>
+		</div>
+		<div class='date'>
+			<img class='pull-right' src='img/folk.png'/>
+			<div ng-show='show'>
+				<p id='day'>[[orders.date]]</p>
+				<p id='price'>Mealprice: [[orders.price]]VND</p>
+				<table class='table table-hover table-striped' ng-show='orders.users.length > 0'>
+					<thead>
+						<tr>
+							<th>TT</th>
+							<th>Name</th>
+							<th>Email</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat='user in orders.users track by $index'>
+							<td>[[$index+1]]</td>
+							<td>[[user.username]]</td>
+							<td>[[user.email]]</td>
+						</tr>
+					</tbody>
+				</table>
+				<button class='btn btn-primary' id='summary' ng-click='monthView()'>Month Summary</button>
+			</div>
+		</div>
+		<div ng-show='!show'>
+			<p class='msg' id='unknown'>[[msg]]</p>
+		</div>
+		</div>
+	</div>
+	<div class='msg' ng-if='!login'>You must login to view this! </div>
+	<div class='msg' ng-if='login && !admin'>You do not have permission to view this! </div>
+</div>

@@ -1,0 +1,28 @@
+<link href="css/stylesheets/admin_users_lunch.css" rel="stylesheet">
+<div  ng-controller='AdminUserWorkingCtrl' class='body'>
+	<div ng-if='admin' data-ng-init='getListUser()'>
+		<h1 class='page-label'>Update Working Request </h1>
+		<h1 id='name'>Active Workers</h1>
+		<div id='table'>
+			<table ng-show='users.length > 0' class='table-striped table-bordered table-hover'>
+				<thead>
+					<tr>
+						<th>TT</th>
+						<th>Username</th>
+						<th>Email</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat='user in users track by $index'>
+						<td>[[$index+1]]</td>
+						<td><a href='#admin/users/working/[[user.id]]/'>[[user.username]]</a></td>
+						<td>[[user.email]]</td>
+					</tr>
+				</tbody>
+			</table>
+			<p class='msg' id='msg' ng-show='!(users.length > 0)'>There is no active workers!</p>
+		</div>
+	</div>
+	<div class='msg' ng-if='!login'>You must login to view this!</div>
+	<div class='msg' ng-if='login && !admin'>You do not have permission to view this!</div>
+</div>

@@ -1,0 +1,46 @@
+<link href="css/stylesheets/admin_holiday.css" rel="stylesheet">
+<div ng-controller='AdminMealPriceCtrl' class='body'>
+	<div data-ng-init='init()' ng-if='admin'>
+		<h1 class='page-label'>Update Meal Prices</h1>
+		<h5 id='mess'>If no meal price is in use, default mealprice will be 25,000VND / meal</h5>
+		<h5>New meal price will be applied from 10AM of start date</h5>
+
+		<form name='priceForm'>
+			<div><div class='block'><label class='date-label'>Price:</label>
+				<input class='input-block' type='number' min='1000' step='1000' name='price' ng-model='price.price' required>
+				</br><span class='error' ng-show="(priceForm.price.$error.required && priceForm.price.$touched)">This field is required.</span>
+				<span class='error' ng-show="(priceForm.price.$invalid && priceForm.price.$touched && !priceForm.price.$error.required)">Wrong format.</span>
+			</div>
+			<div class='block'><label class='date-label'>Start date:</label>
+				<input class='input-block' type='date' name='date' ng-model='price.startDate' required>
+				</br><span class='error' ng-show="(priceForm.date.$error.required && priceForm.date.$touched)">This field is required.</span>
+				<span class='error' ng-show="(priceForm.date.$invalid && priceForm.date.$touched && !priceForm.date.$error.required)">Wrong format.</span>
+			</div>
+			<button class='btn btn-primary' ng-click='priceForm.$valid && create()'>Create</button></div>
+		</form>
+
+		<table ng-show='prices.length > 0' class='table-striped' id='tabl'>
+			<thead>
+				<tr>
+					<th>TT</th>
+					<th>Price</th>
+					<th>Start Date</th>
+					<th>In Use</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat='price in prices'>
+					<td>[[$index+1]]</td>
+					<td>[[price.price]]</td>
+					<td>[[price.startDate]]</td>
+					<td><img class='check' ng-show='price.inUse' src='img/circle.png'/></td>
+					<td><input type="image" class='delete-btn' ng-click='delete(price.startDate, $index)' src='img/trash.png'/></td>
+				</tr>
+			</tbody>
+		</table>
+		<h5 id='msg' ng-show='prices.length==0'>Default meal price is 25,000VND / meal</h5>
+	</div>
+	<div class='msg' ng-if='!login'>You must login to view this!</div>
+	<div class='msg' ng-if='login && !admin'>You do not have permission to view this!</div>
+</div>

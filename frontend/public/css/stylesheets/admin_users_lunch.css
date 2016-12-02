@@ -1,0 +1,49 @@
+#name {
+	font-size: 28px;
+	margin: 0;
+	text-align: center;
+	margin-bottom: 5%;
+}
+
+.page-label {
+	margin-bottom: 0;
+}
+
+table {
+	width: 100%;
+	margin-bottom: 4%;
+}
+
+th:nth-child(1), td:nth-child(1) {
+	width: 6%;
+	min-width: 30px;
+	text-align: center;
+	font-weight: 400;
+}
+
+th:nth-child(2), td:nth-child(2){
+	width: 47%;
+}
+
+th:nth-child(3), td:nth-child(3) {
+	width: 47%;
+}
+
+th {
+	text-align: center;
+	font-weight: 700;
+	font-size: 16px;
+}
+
+td, th {
+	height: 40px;
+}
+
+td:nth-child(2), td:nth-child(3) {
+	padding-left: 10%;
+	padding-right: 10%;
+}
+
+#table {
+	overflow: auto;
+}

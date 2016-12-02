@@ -1,0 +1,52 @@
+<link href="css/stylesheets/schedule.css" rel="stylesheet">
+<link href="css/stylesheets/admin_schedule.css" rel="stylesheet">
+<div ng-controller='AdminScheduleCtrl' class='body'>
+	<div ng-if='admin' data-ng-init='init(0)' >
+		<h1 class='page-label'>Update Working Schedule</h1>
+		
+		<div id='my-btn'>
+			<button class='btn-primary btn' ng-click='init(0)'>Current</button>
+			<button class='btn-primary btn' ng-click='init(1)'>Previous</button>
+		</div>
+
+		<div ng-show='show' class='big-block'>
+			<form>
+				<div class='tabl'>
+					<table class='table table-striped table-bordered'>
+						<thead>
+						<tr>
+							<th colspan='7' id='date'>[[schedule_info.year]]-[[schedule_info.month]]</th>
+						</tr>
+						<tr>
+							<th>Sun</th>
+							<th>Mon</th>
+							<th>Tue</th>
+							<th>Wed</th>
+							<th>Thu</th>
+							<th>Fri</th>
+							<th>Sat</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr ng-repeat='week in range(calendar.length) track by $index'>
+							<td ng-repeat='day in range(calendar[week].length) track by $index'>
+								<p id='day_num'>[[calendar[week][day].substr(calendar[week][day].length-2)]]</p>
+								
+								<p ng-show='calendar[week][day] < today'>[[fix_schedule[week][day].toString()]]</p>
+								
+								<select ng-show='schedule[week][day]!=""&&day!=0&&calendar[week][day] >= today' ng-model='schedule[week][day]' ng-options='name for name in option'></select>
+								
+								<select ng-show='day==0&&calendar[week][day] >= today' ng-repeat='session in range(schedule[week][day].length) track by $index' ng-model='schedule[week][day][session]' ng-options='name for name in option'></select>
+							</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+				<button class='btn btn-primary pull-right update' ng-click='update()'>Update</button>
+			</form>
+		</div>
+		<p id='msg' class='msg' ng-show='!show'>[[msg]]</p>
+	</div>
+	<div class='msg' ng-if='!login'>You must login to view this!</div>
+	<div class='msg' ng-if='login && !admin'>You do not have permission to view this!</div>
+</div>

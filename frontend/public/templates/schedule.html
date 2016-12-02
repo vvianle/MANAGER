@@ -1,0 +1,62 @@
+<link href="css/stylesheets/schedule.css" rel="stylesheet">
+<div class='body'>
+	<div ng-if='login' data-ng-init='init()'>
+		
+		<h1 class='page-label'>Working Schedule</h1>
+		<div class='big-block'>
+			<div id='input'>
+				<form name='scheduleForm' class='recent pull-left' id='form'>
+					<div class='block' id='month-block'><label class='date-label'>Month:</label>
+						<input type='number' id='month' min='1' max='12' name='month' ng-model='date.month' required>
+						</br><span ng-show="(scheduleForm.month.$error.required && scheduleForm.month.$touched)">This field is required.</span>
+						<span ng-show="(scheduleForm.month.$invalid && scheduleForm.month.$touched && !scheduleForm.month.$error.required)">Wrong format.</span>
+					</div>
+					<div class='block' id='year-block'><label class='date-label'>&nbsp;&nbsp;&nbsp;Year:</label>
+						<input type='number' id='year' name='year' min='2016' ng-model='date.year' required>
+						</br><span ng-show="(scheduleForm.year.$error.required && scheduleForm.year.$touched)">This field is required.</span>
+						<span ng-show="(scheduleForm.year.$invalid && scheduleForm.year.$touched && !scheduleForm.year.$error.required)">Wrong format.</span>
+					</div>
+					<button class='btn-primary btn' ng-click='scheduleForm.$valid && check()'>Check</button>
+				</form>
+				<div id='btn' class='pull-right'>
+					<button ng-show='def' class='btn-primary btn' ng-click='getCurrent(0)'>Current</button>
+					<button ng-show='def' class='btn-primary btn' ng-click='getCurrent(1)'>Previous</button>
+					<button ng-show='!def' class='btn-primary btn' ng-click='back()'>Current</button>
+				</div>
+			</div>
+		</div>
+
+		<div ng-show='show' class='big-block tabl' id='table'>
+			<table class='table table-striped table-bordered'>
+				<thead>
+					<tr>
+						<th colspan='7' id='date'>[[working.year]]-[[working.month]]</th>
+					</tr>
+					<tr>
+						<th>Sun</th>
+						<th>Mon</th>
+						<th>Tue</th>
+						<th>Wed</th>
+						<th>Thu</th>
+						<th>Fri</th>
+						<th>Sat</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat='week in range(calendar.length) track by $index'>
+						<td ng-repeat='day in range(0, calendar[week].length) track by $index'>
+							<p id='day'>[[calendar[week][day].substr(calendar[week][day].length-2)]]</p>
+							<strong ng-show='sche[week][day]!=""' class='name'>[[sche[week][day].substr(0)]]</strong>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		
+		<div ng-show='!show'>
+			<p class='msg' id='msg'>[[msg]]</p>
+		</div>
+	</div>
+	<div class='msg' ng-if='!login'>You must login to view this!</div>
+</div>
+

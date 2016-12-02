@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- <base href="/"> -->
+    <title ng-bind='header'></title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="css/landing-page.css" rel="stylesheet">
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="font-awesome/css/font.css" rel="stylesheet" type="text/css"> 
+    <link href="css/stylesheets/index.css" rel="stylesheet" type="text/css"> 
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation" ng-hide='hide' ng-controller='MainCtrl'>
+        <div class="container topnav">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand topnav" ui-sref='home'>Manager</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                  <li class="dropdown" ng-if='login'>
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Lunch <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      <li><a ui-sref="lunch_day">Daily Lunch Request</a></li>
+                      <li><a ui-sref="lunch_month">Monthly Lunch Summary</a></li>
+                    </ul>
+                  </li>
+                  <li ng-if='login'><a ui-sref="schedule">Schedule</a></li>
+                  <li class="dropdown" ng-if='admin'>
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li class='dropdown-header'>Users Manager</li>
+                        <li><a ui-sref="admin_users_create">Create New User</a></li>
+                        <li><a ui-sref="admin_users">Update Users Info</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li class='dropdown-header'>Lunch Manager</li>
+                        <li><a ui-sref="admin_users_lunch">Users Lunch Request</a></li>
+                        <li><a ui-sref="admin_mealprice">Update Meal Price</a></li>
+                        <li><a ui-sref="admin_lunch_generate">Generate Lunch Request</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li class='dropdown-header'>Schedule Manager</li>
+                        <li><a ui-sref="admin_users_working">Users Schedule Request</a></li>
+                        <li><a ui-sref="admin_schedule">Update Current Schedule</a></li>
+                        <li><a ui-sref="admin_generate_schedule">Generate Schedule</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li class='dropdown-header'>Holiday Manager</li>
+                        <li><a ui-sref="admin_holiday">Update Holiday</a></li>
+                    </ul>
+                  </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                  <!-- <li ng-if='login'><a ui-sref="user">[[username]]</a></li> -->
+                    <li class="dropdown" ng-if='login'>
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">[[username]]<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li class='dropdown-header'>Lunch</li>
+                            <li><a ui-sref="user_lunch_register">Lunch Register</a></li>
+                            <li><a ui-sref="user_lunch_summary">Personal Lunch Summary</a></li>
+                            <li ng-if='working' role="separator" class="divider"></li>
+                            <li ng-if='working' class='dropdown-header'>Schedule</li>
+                            <li ng-if='working'><a ui-sref="user_working_register">Working Register</a></li>
+                            <li ng-if='working'><a ui-sref="user_personal_schedule">Personal Working Schedule</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li class='dropdown-header'>Settings</li>
+                            <li><a ui-sref="user_settings">Account Settings</a></li>
+                        </ul>
+                    </li>
+                  <li ng-if='login'><a ui-sref="logout">(Logout)</a></li>
+                  <li ng-if='!login'><a ui-sref="login">Login</a></li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+
+    <!-- Header -->
+    <a name="about" ng-hide='hide'></a>
+    <div class="intro-header" ng-hide='hide'>
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="intro-message">
+                        <h1>Manager</h1>
+                        <h3>Managing Schedule & Lunch Orders</h3>
+                        <hr class="intro-divider">
+                        <ul class="list-inline intro-social-buttons">
+                            <li>
+                                <a ui-sref="home" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
+                            </li>
+                            <li>
+                                <a ui-sref="home" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
+                            </li>
+                            <li>
+                                <a ui-sref="home" class="btn btn-default btn-lg"><i class="fa fa-linkedin fa-fw"></i> <span class="network-name">Linkedin</span></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+
+    <!-- Page Content -->
+    <div ui-view></div>
+
+
+    <!-- Footer -->
+    <footer ng-hide='hide'>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <ul class="list-inline">
+                        <li>
+                            <a ui-sref='home'>Home</a>
+                        </li>
+                        <li class="footer-menu-divider">&sdot;</li>
+                        <li>
+                            <a ui-sref='lunch_day'>Lunch</a>
+                        </li>
+                        <li class="footer-menu-divider">&sdot;</li>
+                        <li>
+                            <a ui-sref='schedule'>Schedule</a>
+                        </li>
+                    </ul>
+                    <p class="copyright text-muted small">Copyright &copy; Your Company 2016. All Rights Reserved</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src= "https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/controller/LunchController.js"></script>
+    <script src="js/controller/AdminController.js"></script>
+    <script src="js/controller/ScheduleController.js"></script>
+    <script src="js/controller/UserController.js"></script>
+    <script src="js/controller/MainController.js"></script>
+
+</body>
+
+</html>

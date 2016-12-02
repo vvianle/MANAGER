@@ -1,0 +1,120 @@
+.col-sm-4 {
+	margin-left: 15%;
+	display: inline-block;
+}
+
+#radio {
+	display: block;
+	overflow: auto;
+}
+
+input[type=radio] {
+	margin-right: 5px;
+}
+
+#form {
+	min-height: 60px;
+	display: block;
+	margin-top: 5%;
+	overflow: auto;
+}
+
+.head {
+	margin-left: 6%;
+	font-weight: 600;
+	font-size: 20px;
+	margin-top: 10px;
+}
+
+form {
+	text-align: center;
+}
+
+.error {
+	margin-left: 24%;
+}
+
+.error2 {
+	margin-left: 8%;
+}
+
+.error3 {
+	margin-left: 28%;
+}
+
+.checkb {
+	min-height: 55px;
+}
+
+.name-label {
+	margin-right: 2%;
+}
+
+input[type='checkbox'] {
+	margin-right: 5px;
+}
+
+.date-label {
+	width: 80px;
+}
+
+.input-block {
+	width: 65%;
+}
+
+.block {
+	display: inline-block;
+	vertical-align: top;
+	min-height: 55px;
+}
+
+.head {
+	margin-left: 10%;
+}
+
+#msg {
+	margin-top: 40px;
+}
+
+table {
+	width: 60%;
+	margin: auto;
+	overflow: auto;
+	margin-bottom: 3%;
+	border: 1px solid #f8f8f8;
+}
+
+table, th, td {
+	text-align: center;
+}
+
+td {
+	font-weight: 500;
+}
+
+th, td {
+	padding: 2%;
+}
+
+.check, input[type=image] {
+	width: 14px;
+	height: 14px;
+}
+
+.delete-btn {
+	margin-top: 8px;
+}
+
+h5 {
+	text-align: center;
+	margin-bottom: 6%;
+}
+
+#tabl {
+	margin-bottom: 0;
+	margin-top: 2%;
+}
+
+.page-label, #mess {
+	margin-bottom: 1%;
+}

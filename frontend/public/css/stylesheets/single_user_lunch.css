@@ -1,0 +1,73 @@
+.head {
+	margin-left: 6%;
+	font-weight: 600;
+	font-size: 22px;
+}
+
+input[type=checkbox] {
+	margin-right: 5px;
+	margin-top: 1%;
+}
+
+.check {
+	display: inline-block;
+	margin-left: 3%;
+	margin-right: 6%;
+}
+
+.input-block {
+	display: inline-block;
+	vertical-align: top;
+	min-height: 55px;
+}
+
+
+.update {
+	width: 50%;
+	margin-right: 25%;
+	margin-left: 25%;
+	margin-top: 2%;
+}
+
+.input-label {
+	width: 45px;
+}
+
+.add-btn {
+	width: 50px;
+}
+
+.formm {
+	margin-left: 6%;
+	margin-bottom: 2%;
+}
+
+.block {
+	margin-top: 2%;
+	margin-bottom: 2%;
+}
+
+.days {
+	text-align: center;
+	width: 70%;
+	margin: auto;
+	border-radius: 20px;
+	background-color: #f8f8f8;
+	overflow: auto;
+	height: 150px;
+	margin-bottom: 6%;
+}
+
+.delete-btn {
+	width: 11px;
+	margin-left: 18%;
+	margin-top: 2%;
+}
+
+.day {
+	margin: 4%;
+}
+
+.day-header {
+	width: 200px;
+}

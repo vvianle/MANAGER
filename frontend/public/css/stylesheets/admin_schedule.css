@@ -1,0 +1,20 @@
+.page-label {
+	margin-bottom: 2.5%;
+}
+
+#my-btn {
+	display: block;
+	text-align: center;
+}
+
+.big-block {
+	margin-top: 4%;
+	margin-bottom: 3%;
+}
+
+.update {
+	margin-right: 10%;
+	margin-bottom: 3%;
+	margin-top: 2%;
+	width: 100px;
+}
